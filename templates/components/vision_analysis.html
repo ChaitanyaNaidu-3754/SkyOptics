@@ -1,0 +1,15 @@
+<div class="glass-card">
+    <h4 class="text-star-blue"><i class="fas fa-camera-retro me-2"></i>Clean Sky Analysis (Vision)</h4>
+    <p class="text-secondary small">Upload a night sky photo. AI will identify 3 prominent features and tell a myth.</p>
+
+    <div class="mb-3">
+        <input class="form-control bg-dark text-light border-secondary" type="file" id="sky-image" accept="image/*">
+    </div>
+    <button class="btn btn-cosmos w-100 mb-3" onclick="analyzeImage(document.getElementById('sky-image'))">Analyze with
+        GPT-4o</button>
+
+    <div id="vision-result" class="p-3 border border-secondary rounded bg-black bg-opacity-25 text-light">
+        <!-- Results will appear here -->
+        <span class="text-secondary fst-italic">Waiting for image...</span>
+    </div>
+</div>

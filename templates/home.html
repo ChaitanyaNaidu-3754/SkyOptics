@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-12">
+        <div class="glass-card">
+            <h2 class="text-star-blue">Mission Control</h2>
+            <p class="lead">Welcome back, Commander. Signal status: <span class="text-success">ONLINE</span></p>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="col-md-8">
+        <div class="glass-card h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="text-gold"><i class="fas fa-calendar-alt me-2"></i>2026 Event Horizon</h4>
+                <button class="btn btn-sm btn-outline-light" onclick="refreshEvents()" id="refresh-btn">
+                    <i class="fas fa-sync-alt me-1"></i> Update
+                </button>
+            </div>
+
+            <div class="timeline" id="timeline-container">
+                {% for event in events %}
+                <div class="timeline-item">
+                    <div class="timeline-date">{{ event.date }}</div>
+                    <h5 class="text-light">{{ event.event }}</h5>
+                    <p class="small text-secondary">{{ event.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="glass-card text-center">
+            <h4>Quick Links</h4>
+            <div class="d-grid gap-2 mt-3">
+                <a href="{{ url_for('iss_page') }}" class="btn btn-outline-info">Track ISS</a>
+                <a href="{{ url_for('vision_page') }}" class="btn btn-outline-primary">Analyze Sky</a>
+                <a href="{{ url_for('chat_page') }}" class="btn btn-outline-warning">Chat</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function refreshEvents() {
+        const btn = document.getElementById('refresh-btn');
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Scanning...';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch('/api/refresh-events', { method: 'POST' });
+            const data = await res.json();
+            if (data.status === 'updated') {
+                const container = document.getElementById('timeline-container');
+                container.innerHTML = data.events.map(e => `
+                    <div class="timeline-item">
+                        <div class="timeline-date">${e.date}</div>
+                        <h5 class="text-light">${e.event}</h5>
+                        <p class="small text-secondary">${e.desc}</p>
+                    </div>
+                `).join('');
+                btn.innerHTML = '<i class="fas fa-check"></i> Updated';
+            } else {
+                btn.innerHTML = 'Error';
+            }
+        } catch {
+            btn.innerHTML = 'Offline';
+        }
+        setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sync-alt"></i> Update'; }, 3000);
+    }
+</script>
+{% endblock %}

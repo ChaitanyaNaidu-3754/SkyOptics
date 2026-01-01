@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card">
+    <h2 class="text-star-blue mb-4"><i class="fas fa-moon me-2"></i>Dark Sky Location Finder</h2>
+    <p class="text-secondary mb-4">Enter a city name to discover the best stargazing locations nearby.</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-dark border-secondary"><i
+                        class="fas fa-city text-star-blue"></i></span>
+                <input type="text" id="city-input" class="form-control bg-dark text-light border-secondary"
+                    placeholder="Enter city name (e.g. Mumbai, London, New York)">
+                <button class="btn btn-cosmos" onclick="findDarkSky()">
+                    <i class="fas fa-search me-1"></i>Find Locations
+                </button>
+            </div>
+            <div class="small text-secondary mb-2">
+                <i class="fas fa-info-circle me-1"></i>
+                Supported cities include: Mumbai, Delhi, Bangalore, Chennai, Hyderabad, New York, Los Angeles, Chicago,
+                London, Sydney, Melbourne
+            </div>
+        </div>
+    </div>
+
+    <div id="dark-sky-result" class="mt-4 p-4 border border-secondary rounded bg-black bg-opacity-25">
+        <div class="text-center">
+            <i class="fas fa-stars fa-3x text-gold mb-3"></i>
+            <p class="text-secondary">Enter a city to discover stargazing locations with Bortle ratings, distances, and
+                tips.</p>
+            <div class="row mt-4 text-start">
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-star-blue"><i class="fas fa-star me-2"></i>Bortle Scale</h6>
+                    <small class="text-secondary">Sky darkness rating (1-9). Lower is better.</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-star-blue"><i class="fas fa-car me-2"></i>Distance</h6>
+                    <small class="text-secondary">Driving distance from city center.</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-star-blue"><i class="fas fa-lightbulb me-2"></i>Tips</h6>
+                    <small class="text-secondary">Location-specific advice.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

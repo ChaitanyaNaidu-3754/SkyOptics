@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card h-100 d-flex flex-column" style="min-height: 80vh;">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-star-blue mb-0"><i class="fas fa-robot me-2"></i>Astro-Chat</h2>
+        <button class="btn btn-sm btn-outline-danger"
+            onclick="fetch('/reset-chat', {method: 'POST'}).then(()=>{document.getElementById('chat-box').innerHTML=''; showToast('Chat cleared!', 'success');})">
+            <i class="fas fa-trash me-1"></i>Clear
+        </button>
+    </div>
+
+    <p class="text-secondary mb-3">Ask me anything about astronomy - planets, stars, black holes, constellations, and
+        more!</p>
+
+    <div id="chat-box" class="flex-grow-1 border border-secondary rounded p-3 mb-3 bg-black bg-opacity-25"
+        style="overflow-y: auto; max-height: 55vh;">
+        <div class="text-center text-secondary small">
+            <i class="fas fa-comments fa-2x mb-2"></i>
+            <p>Try asking: "What is a black hole?" or "Tell me about Jupiter"</p>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="chat-input" class="form-control bg-dark text-light border-secondary"
+            placeholder="Ask about stars, planets, galaxies..." onkeypress="if(event.key==='Enter') sendChat()">
+        <button class="btn btn-cosmos" onclick="sendChat()">
+            <i class="fas fa-paper-plane me-1"></i>Send
+        </button>
+    </div>
+
+    <div class="mt-2 small text-secondary">
+        <i class="fas fa-lightbulb me-1"></i>Topics: planets, stars, black holes, galaxies, meteor showers, eclipses,
+        telescopes, ISS, NASA, Hubble, James Webb
+    </div>
+</div>
+{% endblock %}

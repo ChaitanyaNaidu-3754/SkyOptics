@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card">
+    <h2 class="text-star-blue mb-4"><i class="fas fa-camera me-2"></i>Sky Image Analyzer</h2>
+    <p class="text-secondary">Upload a photo of the night sky. Our system will analyze patterns, identify potential
+        celestial objects, and provide mythology and timing information.</p>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="mb-4">
+                <label class="form-label text-light"><i class="fas fa-image me-2"></i>Select Image</label>
+                <input class="form-control bg-dark text-light border-secondary" type="file" id="sky-image"
+                    accept="image/*">
+                <div class="form-text text-secondary">Supports JPEG, PNG. Best results with actual night sky photos.
+                </div>
+            </div>
+
+            <button class="btn btn-cosmos w-100 mb-4 py-2" onclick="analyzeImage(document.getElementById('sky-image'))"
+                id="analyze-btn">
+                <i class="fas fa-search me-2"></i>Analyze Sky Image
+            </button>
+
+            <div id="vision-result" class="p-4 border border-secondary rounded bg-black bg-opacity-25">
+                <div class="text-center">
+                    <i class="fas fa-satellite-dish fa-3x text-star-blue mb-3"></i>
+                    <p class="text-secondary fst-italic">Upload an image to begin analysis...</p>
+                    <div class="row mt-4 text-start small">
+                        <div class="col-md-4 mb-2">
+                            <span class="text-gold"><i class="fas fa-sun me-1"></i>Brightness Analysis</span>
+                            <p class="text-secondary">Measures sky darkness quality</p>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <span class="text-gold"><i class="fas fa-palette me-1"></i>Color Detection</span>
+                            <p class="text-secondary">Identifies nebula, sunset, clear sky</p>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <span class="text-gold"><i class="fas fa-star me-1"></i>Star Detection</span>
+                            <p class="text-secondary">Counts bright points in image</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

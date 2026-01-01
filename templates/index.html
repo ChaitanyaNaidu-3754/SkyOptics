@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- Highlight Section -->
+    <div class="col-12">
+        <div class="glass-card highlight-section">
+            <h2 class="text-star-blue mb-3">Today's Highlight</h2>
+            <p class="lead">NASA's Artemis Mission: Preparing for the 2026 Lunar Landing. The crew is finalizing
+                training for the historic return to the Moon.</p>
+        </div>
+    </div>
+
+    <!-- Left Column -->
+    <div class="col-lg-8">
+        <div class="row g-4">
+            <!-- ISS Tracker -->
+            <div class="col-md-6">
+                {% include 'components/iss_widget.html' %}
+            </div>
+
+            <!-- Light Pollution -->
+            <div class="col-md-6">
+                {% include 'components/light_pollution.html' %}
+            </div>
+
+            <!-- Vision Analysis -->
+            <div class="col-12">
+                {% include 'components/vision_analysis.html' %}
+            </div>
+
+            <!-- Chatbot -->
+            <div class="col-12">
+                {% include 'components/chatbot.html' %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column (Timeline) -->
+    <div class="col-lg-4">
+        {% include 'components/timeline.html' %}
+    </div>
+</div>
+{% endblock %}

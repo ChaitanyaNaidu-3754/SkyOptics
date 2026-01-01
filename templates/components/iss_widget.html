@@ -1,0 +1,11 @@
+<div class="glass-card h-100">
+    <h4 class="text-star-blue"><i class="fas fa-satellite me-2"></i>ISS Tracker</h4>
+    <div class="input-group mb-3">
+        <input type="text" id="iss-city" class="form-control bg-dark text-light border-secondary"
+            placeholder="Enter City (e.g. New York)">
+        <button class="btn btn-cosmos" onclick="fetchISS(document.getElementById('iss-city').value)">Track</button>
+    </div>
+    <div id="iss-result" class="text-center py-3">
+        <small class="text-secondary">Enter your city to check visibility</small>
+    </div>
+</div>
