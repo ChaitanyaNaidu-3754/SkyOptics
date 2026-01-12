@@ -168,6 +168,44 @@ async function fetchISS(city) {
     }
 }
 
+// Image Preview Function
+function previewImage() {
+    const input = document.getElementById('sky-image');
+    const preview = document.getElementById('image-preview');
+    const previewImg = document.getElementById('preview-img');
+    const imageInfo = document.getElementById('image-info');
+
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+
+        // Validate file type
+        if (!file.type.match('image.*')) {
+            showToast('Please select a valid image file', 'warning');
+            return;
+        }
+
+        // Validate file size (max 10MB)
+        if (file.size > 10 * 1024 * 1024) {
+            showToast('Image file size must be less than 10MB', 'warning');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            preview.style.display = 'block';
+
+            // Update image info
+            const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+            imageInfo.textContent = `${file.name} (${sizeMB} MB) - Ready for analysis`;
+
+            // Scroll to preview
+            preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
 // Sky Image Analyzer
 async function analyzeImage(input) {
     if (!checkCooldown()) return;
